@@ -6,7 +6,7 @@ GitHub Action for ESP32 CI
 
 Workflow definition
 
-```
+```yaml
 jobs:
   build:
 
@@ -17,11 +17,17 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: 'recursive'
+    
     - name: esp-idf build
       uses: espressif/esp-idf-ci-action@latest
       with:
         path: 'esp32-s2-hmi-devkit-1/examples/smart-panel'
+        action: 'idf.py build'                  # optional
 ```
+
+You can run other actions in the docker container by changing 'action'. 
+For instance, to build a merged binary, you can do:
+```idf.py merge_bin```
 
 ## How to specify a custom version of ESP-IDF
 
@@ -49,6 +55,7 @@ release-v4.2
 release-v4.1
 release-v4.0
 release-v3.3
+v4.4
 v4.3.2
 v4.3.1
 v4.3
@@ -58,7 +65,9 @@ v4.2
 v4.1.2
 v4.1.1
 v4.1
+v4.0.4
 v4.0.2
+v3.3.6
 v3.3.4
 v3.3.3
 v3.3.2
