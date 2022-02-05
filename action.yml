@@ -6,9 +6,15 @@ branding:
 inputs:
   path:
     description: 'Relative path under $GITHUB_WORKSPACE to place the repository'
+    required: false
     default: ''
+  action:
+    description: 'Action to run inside the docker container (default: builds the project).'
+    required: false
+    default: 'idf.py build'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
+    - ${{ inputs.action }}
